@@ -2,18 +2,24 @@ fn main() {
     // slice lets you reference a sequence of elements in a collection, it is a kind of reference than a ownership
 
     let some_string: String = String::from("Hello World");
+    println!("{some_string}");
 
     let hello = &some_string[0..5];
     // or
-    let hello2 = &some_string[..5];
+    let _hello2 = &some_string[..5];
     let world = &some_string[6..11];
+    println!("{world}");
     // or
-    let world2 = &some_string[6..];
+    let _world2 = &some_string[6..];
 
-    println!("{hello} \n{world}");
+    println!("{hello} \n {world}");
 
+    // the second_string var holds a mutable reference to the string
     let second_string = first_word(&some_string);
+
     println!("{second_string}");
+    // some_string.clear(); // this is not allowed becuase second_string is still used after this call
+    // if there were no calls to second_string then we could clear the some_string
 }
 
 fn first_word(input: &String) -> &str {
@@ -22,25 +28,6 @@ fn first_word(input: &String) -> &str {
     for (index, &item) in bytes.iter().enumerate() {
         if item == b' ' {
             return &input[0..index];
-        }
-    }
-
-    &input[..]
-}
-
-fn second_word(input: &str) -> &str {
-    let bytes = input.as_bytes();
-    let mut count: usize = 0;
-    let mut first_index: usize = 0;
-
-    for (index, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            if count == 2 {
-                return &input[first_index..index + 1];
-            } else {
-                count += 1;
-                first_index = index;
-            }
         }
     }
 
