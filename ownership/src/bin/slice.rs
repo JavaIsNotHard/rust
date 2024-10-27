@@ -28,7 +28,7 @@ fn first_word(input: &String) -> &str {
     &input[..]
 }
 
-fn second_word(input: &String) -> &str {
+fn second_word(input: &str) -> &str {
     let bytes = input.as_bytes();
     let mut count: usize = 0;
     let mut first_index: usize = 0;
