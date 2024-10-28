@@ -22,7 +22,8 @@ fn main() {
     // if there were no calls to second_string then we could clear the some_string
 }
 
-fn first_word(input: &String) -> &str {
+// if we use &str instead of &String then we can pass both String and str as input to the function this wouldn't have been possible using String as a parameter type
+fn first_word(input: &str) -> &str {
     let bytes = input.as_bytes();
 
     for (index, &item) in bytes.iter().enumerate() {
